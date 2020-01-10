@@ -1,0 +1,3 @@
+RewriteEngine On
+RewriteCond %{HTTP_HOST} ^diamond.temple.edu$
+RewriteRule ^(/)?$ https://library.temple.edu/library-search-faq [R=301,L]

@@ -1,0 +1,37 @@
+---
+
+- name: make sure the app dir exists and is owner by app user
+  file:
+    path: "{{ app_install_path }}/"
+    state: directory
+    owner: "{{ app_user }}"
+
+- name: checkout the app code from source control
+  git:
+    repo: "{{ app_git_url }}"
+    dest: "{{ app_install_path }}"
+    version: "{{ app_git_branch }}"
+    recursive: true
+    accept_hostkey: true
+    force: true
+  register: git
+  become_user: "{{ app_user }}"
+  become: true
+  notify:
+      - restart passenger app
+  tags:
+    - app
+
+- name: bundle install the app gems dependencies
+  bundler:
+    state: present
+    chdir: "{{ app_install_path }}"
+    deployment_mode: true
+    exclude_groups: "{{ app_deployment_exclude_groups }}"
+    executable: "{{ app_bundle_exe }}"
+  become_user: "{{ app_user }}"
+  become: true
+  notify:
+      - restart passenger app
+  tags:
+    - app

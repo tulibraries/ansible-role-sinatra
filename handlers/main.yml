@@ -1,0 +1,20 @@
+---
+
+- name: restart passenger app
+  shell: >
+    bash -lc 'passenger-config restart-app `pwd`'
+  args:
+    chdir: "{{ app_install_path }}"
+  become_user: "{{ app_user }}"
+  become: true
+  failed_when: False
+  tags:
+    - app
+
+- name: restart apache
+  service:
+    name: httpd
+    state: restarted
+  become: true
+  tags:
+    - app

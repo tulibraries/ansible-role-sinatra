@@ -1,0 +1,11 @@
+Alias {{ app_url_base_path }} {{ app_install_path }}/public/
+  <Location {{ app_url_base_path}} >
+    PassengerBaseURI {{ app_url_base_path }}
+    PassengerAppRoot {{ app_install_path }}
+    PassengerRuby /home/{{ app_user }}/.rbenv/versions/{{ rbenv.default_ruby }}/bin/ruby
+  </Location>
+  <Directory {{ app_install_path }}/public>
+    Require all granted
+    Allow from all
+    Options -MultiViews
+  </Directory>

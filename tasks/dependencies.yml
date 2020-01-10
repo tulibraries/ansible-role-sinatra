@@ -1,0 +1,8 @@
+---
+
+- name: Install app specifc dependencies
+  yum:
+    name: "{{ item }}"
+    state: present
+  with_items: "{{ app_package_dependencies |default([]) }}"
+  become: yes
