@@ -1,0 +1,18 @@
+---
+
+galaxy_info:
+  author: 'Tim'
+  description: 'Ansible role to install and configure Sinatra web server for tulle.'
+  company: 'Temple University Libraries'
+  license: 'MIT'
+  min_ansible_version: '2.4'
+  github_branch: 'master'
+  platforms:
+    - name: 'Centos'
+      versions:
+        - '7'
+  galaxy_tags:
+    - 'system'
+dependencies:
+  - role: 'geerlingguy.git'
+    version: '2.0.4'
