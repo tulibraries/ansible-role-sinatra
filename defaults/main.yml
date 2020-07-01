@@ -6,7 +6,7 @@ app_deployment_exclude_groups:
   - test
   - development
 
-app_git_branch: master
+app_git_branch: main
 
 app_use_ssl: false
 app_certs_base_path: /etc/pki/tls
